@@ -1,10 +1,73 @@
-# Gas Utility Service App
+# Gas Utility Services Application
 
-Django Based Gas Service Application
+Django Framework with MYSQL Database with Cloud Run and Cloud SQL deployment.
+
+ **URL of live application**
+  ```bash
+  https://gas-utility-app-346834722927.asia-south1.run.app/
+  ```
+**Sample Cerdentials :**
+Username : demo  and  Password : Pune@123
 ## Features
-**Service requests**: The application would allow customers to submit service requests online. This would include the ability to select the type of service request, provide details about the request, and attach files.
+**Service requests**: The application allows customers to submit service requests online. This includes the ability to select the type of service request, provide details about the request, and attach files.
 
-**Request tracking**: The application would allow customers to track the status of their service requests. This would include the ability to see the status of the request, the date and time the request was submitted, and the date and time the request was resolved.
+**Request tracking**: The application allows customers to track the status of their service requests. This includes the ability to see the status of the request, the date and time the request was submitted, and the date and time the request was resolved.
+
+**Request Management**: The application allows Customer Support Repenstatives to track service requests. This includes the ability to manage the request as per the customers and also provides a feature to send email as per the request status to customer.
+
+### Structure of the application
+```bash
+gas_utility/
+├── gas_utility/
+│   ├── __init__.py
+│   ├── settings.py   # Contains the application settings and configurations with database
+│   ├── urls.py
+│   ├── wsgi.py
+│   └── asgi.py
+└── media/            #   stores the  attachment attached to requests.
+│       ├── attachments/     
+│          ├── f.webp
+│          ├── etc
+│
+├── services/          # directory where actual application logic exists
+│   ├── __init__.py
+│   ├── admin.py       # Admin Tool code for managing the requests and interface of the admin portal
+│   ├── apps.py
+│   ├── models.py      # Database Models to store requests, user information, details of the request 
+│   ├── urls.py        # Routes of different pages to navigate 
+│   ├── views.py       #  logic to interact with frontend views
+│   ├── forms.py       # login and signup forms 
+│   ├── migrations/         # contains files related to interact with database
+│   ├── templates/          # Frontend HTML files 
+│         ├── home.html
+│         ├── index.html
+│         ├── login.html
+│         ├── profile_edit.html
+│         ├── service_details.html
+│         ├── service_requests.html
+│         ├── signup.html
+│         └── user_profile.html
+│         
+│
+│
+└── static/           # files of the static admin page 
+│       ├── admin/
+│       ├── css/
+│       ├── img/
+│       ├── js/
+│
+│
+│
+└── staticfiles/
+│       ├── profile.css
+│
+└── requirements.txt    # dependencies required for the applications to be installed
+│
+└── manage.py
+│
+│
+└── Dockerfile         #  For building image and deploying it on the containers 
+```
 
 These instructions will guide you through setting up and running the Gas Utility Service APP on your local machine for development and testing purposes.
 
@@ -13,7 +76,7 @@ These instructions will guide you through setting up and running the Gas Utility
 - Python (3.8 or later)
 - Django (3.2 or later)
 
-### Installation
+### Setup
 
 1. **Clone the Repository**
 
@@ -21,33 +84,65 @@ These instructions will guide you through setting up and running the Gas Utility
     https://github.com/saishchaskar/gas_utility.git
     ```
 
-2. **Create and Activate a Virtual Environment**
-
-    - For Unix/macOS:
-    
-        ```bash
-        python3 -m venv venv
-        source venv/bin/activate
-        ```
-
-    - For Windows:
-    
-        ```bash
-        python -m venv venv
-        venv\Scripts\activate
-        ```
-        
-3. **Migrate the Database**
+2. **Navigate to the project directory:**
 
     ```bash
-    python manage.py migrate
+    cd your_project_dir
     ```
-4. **Run the Development Server**
+
+3. **Create a virtual environment:**
 
     ```bash
-    python manage.py runserver
+    python -m venv env
     ```
+
+4. **Activate the virtual environment:**
+
+    On Windows:
+
+    ```bash
+    env\Scripts\activate
+    ```
+
+    On Unix or MacOS:
+
+    ```bash
+    source env/bin/activate
+    ```
+
+5. **Install the requirements:**
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+6. **Install the mysqlcilent:**
+
+    ```bash
+    pip install mysqlclient
+    ```    
     
+7. **Database Setup: Set your Database information**
+  ```bash
+  DATABASES = {
+     'default': {
+         'ENGINE': 'django.db.backends.mysql',
+         'NAME': 'your_db_name',
+         'USER': 'your_user_name',    
+         'PASSWORD': 'your_password',
+         'HOST': 'Your_IP_Address',  # Use '127.0.0.1' if 'localhost' causes issues
+         'PORT': 'Port_number',
+         'OPTIONS': {
+             'init_command': "SET time_zone='+05:30'",  # Set to UTC
+         },
+     }
+ }
+ ```
+8. **Migrate Database**
+   ```bash
+   python manage.py makemigrations                                                                               
+   python manage.py migrate
+   python manage.py runserver
+   ```
     Visit `http://127.0.0.1:8000/` in your web browser to view the application.
 
 ### Usage
@@ -57,14 +152,17 @@ These instructions will guide you through setting up and running the Gas Utility
 
 -  # Outputs
 
--  ![Screenshot (161)](https://github.com/saishchaskar/gas_utility/assets/102912746/d394c56b-2d21-409a-a676-b6a34c8e1b33)
--  ![Screenshot (162)](https://github.com/saishchaskar/gas_utility/assets/102912746/22f5ea98-21c5-4011-a03b-7a30a058b981)
--  ![Screenshot (163)](https://github.com/saishchaskar/gas_utility/assets/102912746/01328d74-a323-410c-83ca-b5fac808f7fd)
--  ![Screenshot (164)](https://github.com/saishchaskar/gas_utility/assets/102912746/9d206817-dd86-439c-9c9c-f61172890d96)
--  ![Screenshot (165)](https://github.com/saishchaskar/gas_utility/assets/102912746/2374eb3c-c886-4554-b87c-941d13439952)
--  ![Screenshot (166)](https://github.com/saishchaskar/gas_utility/assets/102912746/69d0f5cd-0d96-4cd2-a1e5-01d85e82a3d8)
--  ![Screenshot (167)](https://github.com/saishchaskar/gas_utility/assets/102912746/92f6a73f-a58a-47fc-b6ef-93414dedab0f)
-  
+-  ![Screenshot (532)](https://github.com/user-attachments/assets/d7e9025c-7565-4a2d-b389-ac972c7700e5)
+-  ![Screenshot (536)](https://github.com/user-attachments/assets/2ec8146e-7e6a-4912-ac86-4cfb286c8abd)
+-  ![Screenshot (534)](https://github.com/user-attachments/assets/dafbafe7-992e-4ecb-8b55-8f5770613d1f)
+-  ![Screenshot (525)](https://github.com/user-attachments/assets/a8669cfc-d583-49b2-bba3-25d275499623)
+-  ![Screenshot (529)](https://github.com/user-attachments/assets/14d8133e-9cdb-4303-9e9a-5c7bc821c3fc)
+-  ![Screenshot (528)](https://github.com/user-attachments/assets/1457aa87-4a68-4ab6-bd19-bba85a350c6e)
+-  ![Screenshot (527)](https://github.com/user-attachments/assets/c74c82fc-554a-456e-aa5c-1b299129ff05)
+-  ![Screenshot (521)](https://github.com/user-attachments/assets/6a746846-de9c-499c-a236-0ecff6bd1372)
+-  ![Screenshot (522)](https://github.com/user-attachments/assets/dc67f1d1-290a-4bc9-b09b-1ba6a0b11061)
+-  ![Screenshot (526)](https://github.com/user-attachments/assets/d09555dd-3fcd-48b8-bb04-91af384a9b8d)
+
 
 
 
