@@ -2,14 +2,14 @@
 
 Django Framework with MYSQL Database with Cloud Run and Cloud SQL deployment.
 
- **URL of live application**
+ **URL of live application :**
   ```bash
   https://gas-utility-app-346834722927.asia-south1.run.app/
   ```
 **Sample Cerdentials :Admin and customer both**
 Username : demo  and  Password : Pune@123 <br>
 
-**To access admin**
+**To access admin :**
  ```bash
  https://gas-utility-app-346834722927.asia-south1.run.app/admin
  ```
