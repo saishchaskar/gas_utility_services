@@ -1,7 +1,7 @@
 # Gas Utility Services Application
 
 Django Framework with MYSQL Database with Cloud Run and Cloud SQL deployment.
-
+<!---
  **URL of live application :**
   ```bash
   https://gas-utility-app-346834722927.asia-south1.run.app/
@@ -13,6 +13,8 @@ Username : demo  and  Password : Pune@123 <br>
  ```bash
  https://gas-utility-app-346834722927.asia-south1.run.app/admin
  ```
+ --->
+ 
 ## Features
 **Service requests**: The application allows customers to submit service requests online. This includes the ability to select the type of service request, provide details about the request, and attach files.
 
